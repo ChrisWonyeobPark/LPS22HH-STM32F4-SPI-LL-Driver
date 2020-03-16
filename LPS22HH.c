@@ -10,7 +10,11 @@
  * STM32F4 LL Driver(SPI)
  *
  * Created by ChrisP(Wonyeob Park) @ M-HIVE Embedded Academy, July, 2019
- * Rev. 1.0
+ * Rev. 1.0.1
+ *
+ * Revision History
+ * - Rev. 1.0.1
+ *   + Corrected formula for altitude calculation. (getAltitude1(), getAltitude2()) - Thanks to H.M.Lee@KETI and icjk****
  *
  * https://github.com/ChrisWonyeobPark
  * https://blog.naver.com/lbiith
@@ -237,10 +241,10 @@ void LPS22HH_GetTemperature(int16_t* temperature)
 
 float getAltitude1(float pressure) //No temperature correction.
 {
-	return (powf((SEA_PRESSURE / pressure), 0.1902226f) - 1.0) * 44307.69396f; //145366.45f * 0.3048f = 44307.69396f;
+	return (1.0f - powf((pressure / SEA_PRESSURE), 0.1902226f)) * 44307.69396f; //145366.45f * 0.3048f = 44307.69396f;
 }
 
 float getAltitude2(float pressure, float temperature) //Get Altitude with temperature correction.
 {
-	return ((powf((SEA_PRESSURE / pressure), 0.1902226f) - 1.0f) * (temperature + 273.15f)) / 0.0065f;
+	return (1.0f - (powf((pressure / SEA_PRESSURE), 0.1902226f)) * (temperature + 273.15f)) / 0.0065f;
 }
