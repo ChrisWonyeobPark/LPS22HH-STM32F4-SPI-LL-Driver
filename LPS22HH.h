@@ -15,6 +15,8 @@
  * https://github.com/ChrisWonyeobPark
  * https://blog.naver.com/lbiith
  * https://cafe.naver.com/mhiveacademy
+ * https://www.udemy.com/course/stm32-drone-programming/
+ * https://www.inflearn.com/course/stm32cubelde-stm32f4%EB%93%9C%EB%A1%A0-%EA%B0%9C%EB%B0%9C
 */
 
 #ifndef	_LPS22HH_H
